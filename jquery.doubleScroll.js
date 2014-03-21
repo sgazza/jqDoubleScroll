@@ -57,12 +57,14 @@ jQuery.fn.doubleScroll = function(userOptions) {
 
 	    // bind upper scroll to bottom scroll
 	    $topScrollBar.bind('scroll.doubleScroll', function() {
-	    	$self.scrollLeft($topScrollBar.scrollLeft());
+	    	if($self.scrollLeft() !== $topScrollBar.scrollLeft())
+    			$self.scrollLeft($topScrollBar.scrollLeft());
 	    });
 
 	    // bind bottom scroll to upper scroll
 	    var selfScrollHandler = function() {
-	        $topScrollBar.scrollLeft($self.scrollLeft());
+	    	if($self.scrollLeft() !== $topScrollBar.scrollLeft())
+	        	$topScrollBar.scrollLeft($self.scrollLeft());
 	    };
 	    $self.bind('scroll.doubleScroll', selfScrollHandler);
 
